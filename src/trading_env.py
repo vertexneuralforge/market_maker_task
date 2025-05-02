@@ -45,15 +45,15 @@ class TradingEnv(gym.Env):
         row = self.data.iloc[self.current_step]
         mid_price = row["close"]
         
-        # Apply action (your RL adjustment)
+        # Apply action (RL adjustment)
         spread = 0.01 * mid_price  # Base spread
         adjusted_spread = spread * (1 + action[0])
         
-        # Simulate trading (simplified)
+        # Simulate trading 
         self.inventory += 1  # Simulate buy
         self.capital -= mid_price * (1 - adjusted_spread/2)
         
-        # Calculate reward (your MBA finance skills)
+        # Calculate reward 
         portfolio_value = self.capital + self.inventory * mid_price
         reward = np.log(portfolio_value / 10000)  # Log-return
         
